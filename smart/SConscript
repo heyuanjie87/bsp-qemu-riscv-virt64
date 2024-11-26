@@ -7,6 +7,8 @@ objs = []
 list = os.listdir(cwd)
 
 for d in list:
+    if d == "smart":
+        continue
     path = os.path.join(cwd, d)
     if os.path.isfile(os.path.join(path, 'SConscript')):
         objs = objs + SConscript(os.path.join(d, 'SConscript'))

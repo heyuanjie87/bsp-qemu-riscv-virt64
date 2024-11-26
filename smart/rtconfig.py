@@ -1,11 +1,12 @@
 import os
+import autoenvsave
 
 # toolchains options
 ARCH        ='risc-v'
 CPU         ='virt64'
 CROSS_TOOL  ='gcc'
 
-RTT_ROOT = os.getenv('RTT_ROOT') or os.path.join(os.getcwd(), '../../..')
+RTT_ROOT = autoenvsave.getenv('RTT_ROOT', r'../../..')
 
 if os.getenv('RTT_CC'):
     CROSS_TOOL = os.getenv('RTT_CC')
@@ -16,6 +17,8 @@ if  CROSS_TOOL == 'gcc':
 else:
     print('Please make sure your toolchains is GNU GCC!')
     exit(0)
+
+EXEC_PATH = autoenvsave.getenv('RTT_EXEC_PATH', EXEC_PATH)
 
 BUILD = 'debug'
 
