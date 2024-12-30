@@ -1,5 +1,6 @@
 import os
 import autoenvsave
+from SCons.Script import ARGUMENTS
 
 # toolchains options
 ARCH        ='risc-v'
@@ -22,6 +23,9 @@ EXEC_PATH = autoenvsave.getenv('RTT_EXEC_PATH', EXEC_PATH)
 
 BUILD = 'debug'
 
+MARCH = ARGUMENTS.get('march', 'rv64imafdc')
+MABI = ARGUMENTS.get('mabi', 'lp64')
+
 if PLATFORM == 'gcc':
     # toolchains
     PREFIX  = os.getenv('RTT_CC_PREFIX') or 'riscv64-unknown-linux-musl-'
@@ -35,7 +39,7 @@ if PLATFORM == 'gcc':
     OBJDUMP = PREFIX + 'objdump'
     OBJCPY  = PREFIX + 'objcopy'
 
-    DEVICE  = ' -mcmodel=medany -march=rv64imafdc -mabi=lp64 '
+    DEVICE  = fr' -mcmodel=medany -march={MARCH} -mabi={MABI} '
     CFLAGS  = DEVICE + '-ffreestanding -flax-vector-conversions -Wno-cpp -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fdiagnostics-color=always'
     AFLAGS  = ' -c' + DEVICE + ' -x assembler-with-cpp -D__ASSEMBLY__ '
     LFLAGS  = DEVICE + ' -nostartfiles -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,_start -T link.lds' + ' -lsupc++ -lgcc -static'
