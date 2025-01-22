@@ -472,6 +472,7 @@
 /* end of RISC-V QEMU virt64 configs */
 #define BOARD_QEMU_VIRT_RV64
 #define ENABLE_FPU
+#define ARCH_RISCV_FPU_D
 #define ARCH_USING_NEW_CTX_SWITCH
 #define __STACKSIZE__ 16384
 

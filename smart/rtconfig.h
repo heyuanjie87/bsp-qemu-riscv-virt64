@@ -208,6 +208,7 @@
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_SERIAL_BYPASS
 #define RT_USING_CPUTIME
 #define RT_USING_CPUTIME_RISCV
 #define CPUTIME_TIMER_FREQ 10000000
@@ -347,6 +348,7 @@
 /* end of Utilities */
 #define RT_USING_LWP
 #define LWP_DEBUG
+#define LWP_USING_RUNTIME
 #define RT_LWP_MAX_NR 30
 #define LWP_TASK_STACK_SIZE 16384
 #define RT_CH_MSG_MAX_NR 1024
@@ -555,6 +557,9 @@
 /* end of RISC-V QEMU virt64 configs */
 #define BOARD_QEMU_VIRT_RV64
 #define ENABLE_FPU
+#define ENABLE_VECTOR
 #define __STACKSIZE__ 16384
+#define ARCH_RISCV_VECTOR
+#define ARCH_VECTOR_VLEN_128
 
 #endif
